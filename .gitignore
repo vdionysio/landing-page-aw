@@ -1,0 +1,10 @@
+.vscode/
+
+# Temporary files and logs
+/logs/
+*.log
+*.tmp
+*.cache
+*.backup
+temp/
+tmp/
