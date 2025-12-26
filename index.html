@@ -43,7 +43,74 @@
                 </div>
             </div>
         </nav>
+
+        <section class="pt-5 pb-0 position-relative">
+            <div class="container">
+                <div class="row">
+                    
+                    <div class="col-lg-8 position-relative hero-left-column">
+                        <div class="hero-content">
+                            <h1 class="mt-0">Lorem ipsum dolor sit amet. <span>Nam vehicula enim dui.</span></h1>
+                            <p class="lead col-lg-5">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam vehicula enim dui. Cras vitae euismod metus.</p>
+                        </div>
+
+                        <img src="assets/images/casal-header.png" alt="Casal de senhores sorrindo" class="img-hero-overlay d-none d-lg-block">
+                    </div>
+
+                    <div class="col-lg-4 pb-5 pt-4 pt-lg-0">
+                        <div class="card shadow border-0" style="border-radius: 15px;">
+                            <div class="card-body p-4">
+                                <h3 class="h5 mb-1">Precisa de nossa ajuda?</h3>
+                                <p class="small text-muted mb-4">Preencha o formulário abaixo e fale conosco</p>
+                                
+                                <form action="mail/mail.php" method="POST">
+                                    <div class="mb-3">
+                                        <label for="inputName" class="visually-hidden">Nome</label>
+                                        <input type="text" name="nome" class="form-control" id="inputName" placeholder="Nome" required>
+                                    </div>
+                                    
+                                    <div class="mb-3" id="container-select">
+                                        </div>
+                                    
+                                    <div class="mb-3">
+                                        <label for="inputTelefone" class="visually-hidden">Telefone</label>
+                                        <input type="tel" name="telefone" class="form-control" id="inputTelefone" placeholder="Telefone" required>
+                                    </div>
+                                    
+                                    <div class="mb-3">
+                                        <label for="inputEmail" class="visually-hidden">E-mail</label>
+                                        <input type="email" name="email" class="form-control" id="inputEmail" placeholder="E-mail" required>
+                                    </div>
+                                    
+                                    <div class="mb-3">
+                                        <label for="inputValor" class="visually-hidden">Valor do precatório</label>
+                                        <input type="text" name="valor" class="form-control" id="inputValor" placeholder="Valor do precatório">
+                                    </div>
+                                    
+                                    <div class="mb-3">
+                                        <label for="inputNumeroProcesso" class="visually-hidden">Número do processo</label>
+                                        <input type="text" name="processo" class="form-control" id="inputNumeroProcesso" placeholder="Número do processo">
+                                    </div>
+                                    
+                                    <div class="d-grid">
+                                        <button type="submit" class="btn btn-primary w-100 py-2">Enviar</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                    
+            </div>
+        </section>
     </header>
+    <script>
+        fetch('estados-select.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('container-select').innerHTML = data;
+            });
+    </script>
     <script src="assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

@@ -1,9 +1,114 @@
+@font-face {
+    font-family: 'Inter';
+    src: url('../fonts/Inter/Inter-VariableFont_opsz\,wght.ttf');
+}
+
 body {
-    background-color: #093767;
+    background-color: #F5F7F9;
+    font-family: 'Inter', Arial, sans-serif;
+    color: #FFFFFF;
+}
+
+header {
+    position: relative;
+    background-image: 
+        radial-gradient(circle at 45% 50%, rgba(255, 255, 255, 0.288) 0%, transparent 70%),
+        url('../images/main-bg.png');
+    background-size: 100% 100%, cover;
+    background-repeat: no-repeat, no-repeat;
+    border-bottom-left-radius: 90px;
+    box-shadow: inset 0px -50px 40px -20px rgba(0,0,0,0.3);
+    overflow: hidden;
+
+    /* Garante que ocupe toda a tela, mas cresça se o conteúdo for maior (como no mobile) */
+    min-height: 100vh; 
+    
+    /* Flexbox para centralizar o conteúdo da Section verticalmente */
+    display: flex;
+    flex-direction: column;
+    
+    position: relative;
+    overflow: hidden;
+}
+
+header > section {
+    flex: 1;
+    display: flex;
+    align-items: center; /* Centraliza o conteúdo (texto/form) no meio da tela */
 }
 
 .btn-call {
     background-color: #F6DE6C;
     color: #065C99;
     border-radius: 20px;
+}
+
+.btn-call:hover {
+    background-color: #065C99;
+    color: #F6DE6C;
+    border: 1px solid #F6DE6C;
+}
+
+.btn-call:click {
+    background-color: #d4bc4a;
+    transform: scale(0.98);
+    transition: transform 0.1s;
+}
+
+.img-hero-overlay {
+filter: drop-shadow(5px 5px 35px rgba(0, 0, 0, 0.6));
+}
+
+@media (min-width: 992px) {
+    /* A coluna precisa ser o ponto de referência */
+    .position-relative {
+        position: relative;
+    }
+
+    .img-hero-overlay {
+        position: absolute;
+        bottom: 0;       /* Gruda na base do header */
+        right: 15px;    /* Ajuste para a direita (pode ser 0 ou negativo para sobrepor a divisão) */
+        max-width: 550px; /* Ajuste o tamanho conforme seu PDF */
+        z-index: 1;      /* Garante que fique sobre outros elementos se necessário */
+    }
+
+    /* Opcional: garantir que o texto não seja atropelado pela imagem */
+    .hero-content p {
+        max-width: 70%; 
+    }
+
+    .hero-left-column {
+        min-height: 550px;
+    }
+
+    header::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 30%; /* Define a altura da "sombra" na base (30% do header) */
+        
+        /* Gradiente: de transparente para um azul bem mais escuro ou preto */
+        /* Substitua #041a31 pela cor escura de sua preferência */
+        background: linear-gradient(to bottom, transparent 0%, #041a31 100%);
+        
+        pointer-events: none; /* Garante que o clique passe através dele */
+        z-index: 1; /* Fica acima do zigue-zague, mas abaixo do texto/form se eles tiverem z-index maior */
+    }
+}
+
+/* No Mobile, a imagem volta para baixo do texto normalmente */
+@media (max-width: 991px) {
+
+    header {
+        background-size: auto;
+        border-bottom-left-radius: 60px;
+    }
+
+    .hero-left-column {
+        min-height: auto; /* Remove o espaço vazio */
+        margin-bottom: 30px; /* Pequeno respiro entre texto e form */
+    }
 }
