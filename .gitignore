@@ -1,4 +1,5 @@
 .vscode/
+.env
 
 # Temporary files and logs
 /logs/
