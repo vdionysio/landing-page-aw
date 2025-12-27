@@ -19,6 +19,10 @@ header {
     background-size: auto;
 }
 
+.hero-content h1 {
+    font-size: 1.45rem;
+}
+
 .card-form {
     border-radius: 30px;
 }
@@ -36,7 +40,7 @@ header {
 
 .btn-call:hover {
     background-color: #065C99;
-    color: #F6DE6C;
+    color: #f8f1cc;
     border: 1px solid #F6DE6C;
 }
 
@@ -44,6 +48,37 @@ header {
     background-color: #d4bc4a;
     transform: scale(0.98);
     transition: transform 0.1s;
+}
+
+.btn-cta {
+    background-color: #F6DE6C;
+    color: #1a1a1a;
+    border-radius: 40px;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.btn-cta:hover {
+    background-color: #faeab0;
+    box-shadow: 0 6px 15px rgba(246, 222, 108, 0.4);
+}
+
+.btn-cta:active {
+    background-color: #ebd25b;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.checkbox-erro {
+    color: #d9534f; 
+    font-weight: 600;
+    transition: color 0.4s ease;
+    animation: pulse 0.5s ease-in-out;
+}
+
+@keyframes pulse {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-2px); }
+    75% { transform: translateX(2px); }
 }
 
 .input-icon {
@@ -88,7 +123,7 @@ header {
     border: none;
 }
 
-.form-control::placeholder {
+.form-control::placeholder, .checkbox-wrapper {
     color: var(--form-placeholder) !important;
 }
 
@@ -98,6 +133,20 @@ header {
 
 .form-select option {
     color: #000;
+}
+
+.checkbox-wrapper {
+    display: flex;
+    align-items: center; /* Alinha verticalmente ao centro */
+    gap: 10px;           /* Espaço entre o quadrado e o texto */
+    margin-bottom: 20px; /* Espaço antes do botão de enviar */
+    font-size: 14px;     /* Tamanho do texto */
+}
+
+.checkbox-wrapper input[type="checkbox"] {
+    width: 16px;         /* Tamanho do quadrado */
+    height: 16px;        /* Tamanho do quadrado */
+    cursor: pointer;     /* Cursor de ponteiro ao passar o mouse */
 }
 
 .input-group-text {
@@ -122,9 +171,25 @@ header {
     -webkit-backdrop-filter: blur(2px);
 }
 
+.btn-whatsapp {
+    background-color: #25D366;
+    color: #fff;
+    width: 60px;
+    height: 60px;
+    border: none;
+    transition: all 0.3s ease;
+}
+
+.btn-whatsapp:hover {
+    background-color: #128C7E;
+    color: #fff;
+    transform: scale(1.1);
+}
+
 /* Small devices (landscape phones, 576px and up) */
 @media (min-width: 576px) { 
     /* styles for .col-sm-* */
+    
 }
 
 /* Medium devices (tablets, 768px and up) */
@@ -145,8 +210,22 @@ header {
         border-bottom-left-radius: 90px;
     }
 
-    .hero-content {
+    /* Aplica formatação do display-5 */
+    .hero-content h1 {
+        font-size: 3rem;
+        font-weight: 300;
+        line-height: 1.2;
+        margin-bottom: 1rem;
+    }
+
+    .hero-content p {
         font-size: 1.5rem;
+    }
+
+    .form-control,
+    .form-select {
+        height: 50px;        /* Altura maior (o padrão é ~38px) */
+        font-size: 1.1rem;   /* Aumenta levemente a letra para preencher */
     }
     
 }

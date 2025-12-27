@@ -1,23 +1,8 @@
 document.addEventListener('DOMContentLoaded', function() {
 
-    // Botão "Back to Top"
-    const myButton = document.getElementById('btn-back-to-top');
+    // Máscaras de input
 
-    if (myButton) {
-        window.onscroll = function () {
-            if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
-                myButton.classList.remove('invisible');
-            } else {
-                myButton.classList.add('invisible');
-            }
-        };
-
-        myButton.addEventListener('click', () => {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        });
-    }
-
-    // Máscara de Telefone
+    // Telefone
     const inputTelefone = document.getElementById('inputTelefone');
     if (inputTelefone) {
         inputTelefone.addEventListener('input', function (e) {
@@ -29,7 +14,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Máscara de Moeda
+    // Valor do precatório
     const inputValor = document.getElementById('inputValor');
     if (inputValor) {
         inputValor.addEventListener('input', function (e) {
@@ -45,7 +30,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Máscara de Número do Processo
+    // Número do Processo - Padrao CNJ
     const inputProcesso = document.getElementById('inputNumeroProcesso');
     if (inputProcesso) {
         inputProcesso.addEventListener('input', function (e) {
@@ -61,33 +46,72 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Envio do Form com validação
+    // Validação do Formulário
+
     const contactForm = document.getElementById('contactForm');
+    const checkboxPolitica = document.getElementById('politica');
+    const labelPolitica = document.querySelector('label[for="politica"]');
+
+    // Remove o erro do checkbox
+    if(checkboxPolitica) {
+        checkboxPolitica.addEventListener('change', function() {
+            if(this.checked) {
+                labelPolitica.classList.remove('checkbox-erro');
+            }
+        });
+    }
+
     let alertTimeout;
+
     if (contactForm) {
         contactForm.addEventListener('submit', function(event) {
             event.preventDefault();
+            event.stopPropagation();
             
             const form = event.target;
             const alertBox = document.getElementById('form-alert');
             const btnSubmit = document.getElementById('btnSubmit');
-            
-            if (alertTimeout) clearTimeout(alertTimeout);
-            
-            if (!form.checkValidity()) {
-                event.stopPropagation();
-                form.classList.add('was-validated');
-                return;
+            let isValid = true;
+
+            // Validação Checkbox
+            if (!checkboxPolitica.checked) {
+                isValid = false;
+                labelPolitica.classList.add('checkbox-erro');
+                // Remove a classe de erro após 1.5s
+                setTimeout(() => {
+                    labelPolitica.classList.remove('checkbox-erro'); 
+                }, 1500); 
             }
 
-            const formData = new FormData(form);
+            // Validação Telefone
+            const telValue = inputTelefone.value.replace(/\D/g, '');
+            if (telValue.length < 10) {
+                inputTelefone.setCustomValidity("Telefone incompleto");
+                isValid = false;
+            } else {
+                inputTelefone.setCustomValidity("");
+            }
+
+            // Validação Padrão
+            if (!form.checkValidity()) {
+                isValid = false;
+            }
             
-            // Verifica se os elementos de UI existem antes de manipular
+            form.classList.add('was-validated');
+
+            if (!isValid) return;
+
+            // Envio
+
             if(btnSubmit) {
                 btnSubmit.disabled = true;
-                btnSubmit.innerHTML = 'Enviando...';
+                const originalBtnText = btnSubmit.innerHTML;
+                btnSubmit.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Enviando...';
             }
             if(alertBox) alertBox.classList.add('d-none');
+            if(alertTimeout) clearTimeout(alertTimeout);
+
+            const formData = new FormData(form);
 
             fetch('mail/mail.php', {
                 method: 'POST',
@@ -98,14 +122,13 @@ document.addEventListener('DOMContentLoaded', function() {
                 if(alertBox) {
                     alertBox.classList.remove('d-none');
                     if (data.success) {
-                        alertBox.classList.remove('alert-danger');
-                        alertBox.classList.add('alert-success');
+                        alertBox.className = 'alert position-fixed top-0 end-0 m-3 z-3 shadow alert-success';
                         alertBox.innerText = data.message;
                         form.reset();
                         form.classList.remove('was-validated');
+                        if(checkboxPolitica) checkboxPolitica.checked = false; // reset
                     } else {
-                        alertBox.classList.remove('alert-success');
-                        alertBox.classList.add('alert-danger');
+                        alertBox.className = 'alert position-fixed top-0 end-0 m-3 z-3 shadow alert-danger';
                         alertBox.innerText = data.message || 'Erro ao enviar.';
                     }
 
@@ -117,10 +140,10 @@ document.addEventListener('DOMContentLoaded', function() {
             .catch(error => {
                 console.error('Erro:', error);
                 if(alertBox) {
-                    alertBox.classList.remove('d-none', 'alert-success');
-                    alertBox.classList.add('alert-danger');
+                    alertBox.classList.remove('d-none');
+                    alertBox.className = 'alert position-fixed top-0 end-0 m-3 z-3 shadow alert-danger';
                     alertBox.innerText = 'Erro de conexão com o servidor.';
-
+                    
                     alertTimeout = setTimeout(() => {
                         alertBox.classList.add('d-none');
                     }, 5000);
@@ -129,9 +152,24 @@ document.addEventListener('DOMContentLoaded', function() {
             .finally(() => {
                 if(btnSubmit) {
                     btnSubmit.disabled = false;
-                    btnSubmit.innerHTML = 'Enviar';
+                    btnSubmit.innerHTML = 'ENVIAR'; // reset
                 }
             });
+        });
+    }
+
+    // Botão Back to Top
+    const myButton = document.getElementById('btn-back-to-top');
+    if (myButton) {
+        window.onscroll = function () {
+            if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+                myButton.classList.remove('invisible');
+            } else {
+                myButton.classList.add('invisible');
+            }
+        };
+        myButton.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         });
     }
 });
