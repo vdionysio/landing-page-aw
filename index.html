@@ -14,8 +14,12 @@
 
 </head>
 <body>
+    <div id="form-alert" 
+        class="alert position-fixed top-0 end-0 m-3 z-3 shadow d-none" 
+        role="alert" 
+        style="max-width: 400px;">
+    </div>
     <header>
-        
         <nav class="navbar navbar-expand-lg pt-4" data-bs-theme="dark">
             <div class="container">
                 <a class="navbar-brand" href="#">
@@ -64,22 +68,62 @@
                                 <h3 class="h5 mb-1">Precisa de nossa ajuda?</h3>
                                 <p class="small text-muted mb-4">Preencha o formulário abaixo e fale conosco</p>
                                 
-                                <form action="mail/mail.php" method="POST">
+                                <form action="mail/mail.php" method="POST" id="contactForm" novalidate>
                                     <div class="mb-3">
                                         <label for="inputName" class="visually-hidden">Nome</label>
                                         <div class="input-group">
                                             <span class="input-group-text"><i class="bi bi-person"></i></span>
                                             <input type="text" name="nome" class="form-control" id="inputName" placeholder="Nome" required>
+                                            <div class="invalid-tooltip">Por favor, insira seu nome.</div>
                                         </div>
                                     </div>
                                     
-                                    <div class="mb-3" id="container-select"></div>
+                                    <div class="mb-3" id="container-select">
+                                        <label for="select-estados" class="form-label visually-hidden">Disabled select menu</label>
+                                        <div class="input-group has-validation">
+                                            <span class="input-group-text"><i class="bi bi-globe-americas"></i></span>
+                                            <select id="select-estados" class="form-select" name="estado" required>
+                                                <option value="" selected disabled>Estado/UF</option>
+                                                
+                                                <option value="AC">Acre</option>
+                                                <option value="AL">Alagoas</option>
+                                                <option value="AP">Amapá</option>
+                                                <option value="AM">Amazonas</option>
+                                                <option value="BA">Bahia</option>
+                                                <option value="CE">Ceará</option>
+                                                <option value="DF">Distrito Federal</option>
+                                                <option value="ES">Espírito Santo</option>
+                                                <option value="GO">Goiás</option>
+                                                <option value="MA">Maranhão</option>
+                                                <option value="MT">Mato Grosso</option>
+                                                <option value="MS">Mato Grosso do Sul</option>
+                                                <option value="MG">Minas Gerais</option>
+                                                <option value="PA">Pará</option>
+                                                <option value="PB">Paraíba</option>
+                                                <option value="PR">Paraná</option>
+                                                <option value="PE">Pernambuco</option>
+                                                <option value="PI">Piauí</option>
+                                                <option value="RJ">Rio de Janeiro</option>
+                                                <option value="RN">Rio Grande do Norte</option>
+                                                <option value="RS">Rio Grande do Sul</option>
+                                                <option value="RO">Rondônia</option>
+                                                <option value="RR">Roraima</option>
+                                                <option value="SC">Santa Catarina</option>
+                                                <option value="SP">São Paulo</option>
+                                                <option value="SE">Sergipe</option>
+                                                <option value="TO">Tocantins</option>
+                                                <option value="EX">Estrangeiro</option>
+                                            </select>
+                                            <div class="invalid-tooltip">Selecione um estado.</div>
+                                        </div>
+                                    </div>
                                     
                                     <div class="mb-3">
                                         <label for="inputTelefone" class="visually-hidden">Telefone</label>
-                                        <div class="input-group">
+                                        <div class="input-group has-validation">
                                             <span class="input-group-text"><i class="bi bi-telephone"></i></span>
-                                            <input type="tel" name="telefone" class="form-control" id="inputTelefone" placeholder="Telefone" required>
+                                            <input type="tel" name="telefone" class="form-control" id="inputTelefone" placeholder="Telefone" maxlength="15" required>
+                                            <div class="invalid-tooltip">Insira um telefone válido.</div>
                                         </div>
                                     </div>
                                     
@@ -88,26 +132,29 @@
                                         <div class="input-group">
                                             <span class="input-group-text"><i class="bi bi-envelope"></i></span>
                                             <input type="email" name="email" class="form-control" id="inputEmail" placeholder="E-mail" required>
+                                            <div class="invalid-tooltip">Insira um e-mail válido.</div>
                                         </div>
                                     </div>
                                     
                                     <div class="mb-3">
                                         <label for="inputValor" class="visually-hidden">Valor do precatório</label>
-                                        <div class="input-group">
-                                            <span class="input-group-text"><span class="input-icon ">R$</span></span>
-                                            <input type="text" name="valor" class="form-control" id="inputValor" placeholder="Valor do precatório">
+                                        <div class="input-group has-validation">
+                                            <span class="input-group-text"><span class="input-icon">R$</span></span>
+                                            <input type="text" name="valor" class="form-control" id="inputValor" placeholder="Valor do precatório" inputmode="decimal" required>
+                                            <div class="invalid-tooltip">Informe o valor.</div>
                                         </div>
                                     </div>
                                     
                                     <div class="mb-3">
                                         <label for="inputNumeroProcesso" class="visually-hidden">Número do processo</label>
-                                        <div class="input-group">
-                                            <input type="text" inputmode="numeric" name="processo" class="form-control" id="inputNumeroProcesso" placeholder="Número do processo">
+                                        <div class="input-group has-validation">
+                                            <input type="text" inputmode="numeric" name="processo" class="form-control" id="inputNumeroProcesso" placeholder="Número do processo" required>
+                                            <div class="invalid-tooltip">Informe o valor.</div>
                                         </div>
                                     </div>
                                     
                                     <div class="d-grid">
-                                        <button type="submit" class="btn btn-primary w-100 py-2">Enviar</button>
+                                        <button type="submit" class="btn btn-primary w-100 py-2" id="btnSubmit">Enviar</button>
                                     </div>
                                 </form>
                             </div>
@@ -131,37 +178,6 @@
     </button>
 
     <script src="assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script>
-        fetch('estados-select.html')
-            .then(response => response.text())
-            .then(data => {
-                document.getElementById('container-select').innerHTML = data;
-            })
-            .catch(error => {
-                console.error('Error loading states:', error);
-                document.getElementById('container-select').innerHTML = '<p class="text-danger">Erro ao carregar estados.</p>';
-            });
-
-        const myButton = document.getElementById('btn-back-to-top');
-
-        window.onscroll = function () {
-            scrollFunction();
-        };
-
-        function scrollFunction() {
-            if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
-                myButton.classList.remove('invisible');
-            } else {
-                myButton.classList.add('invisible');
-            }
-        }
-
-        myButton.addEventListener('click', () => {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
-        });
-    </script>
+    <script src="assets/js/main.js"></script>
 </body>
 </html>

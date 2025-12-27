@@ -53,22 +53,39 @@ header {
     display: block;
 }
 
-.input-group-text {
-    color: #065C99;
-    background-color: #fff;
-    border-right: none; 
+.input-group {
+    position: relative;
 }
 
-.input-group .form-control, .input-group .form-select {
-    border-left: none;
+.input-group .input-group-text {
+    position: absolute;
+    left: 1px;
+    top: 1px;
+    bottom: 1px;
+    z-index: 10;
     border: none;
+    background: transparent;
+    color: #065C99;
+    width: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    pointer-events: none;
+}
+
+.input-group .form-control,
+.input-group .form-select {
+    padding-left: 50px;
+    border-radius: 0.375rem !important;
+    z-index: 1;
 }
 
 .form-control, 
 .form-select {
     color: var(--form-text-color) !important;
     background-color: var(--form-bg-color) !important;
-    border: none; /* Keep your borderless style */
+    border: none;
 }
 
 .form-control::placeholder {
@@ -95,6 +112,14 @@ header {
 .input-group:focus-within {
     box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
     border-radius: 0.375rem;
+}
+
+.invalid-tooltip {
+    background-color: rgba(220, 53, 69, 0.8) !important; 
+    
+    /* desfoque no fundo */
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
 }
 
 /* Small devices (landscape phones, 576px and up) */
