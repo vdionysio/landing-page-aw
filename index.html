@@ -1,20 +1,25 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A AlfamaWeb ajuda você a receber seus precatórios com rapidez e segurança. Entre em contato hoje mesmo.">
     <title>Landing Page AlfamaWeb</title>
 
     <link rel="stylesheet" href="assets/libs/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/libs/bootstrap-icons-1.13.1/bootstrap-icons.min.css">
     <link rel="stylesheet" href="assets/css/style.css">
+
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
 
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-lg" data-bs-theme="dark">
+        
+        <nav class="navbar navbar-expand-lg pt-4" data-bs-theme="dark">
             <div class="container">
                 <a class="navbar-brand" href="#">
-                    <img src="assets/images/logo_alfama.png" width="200px" alt="" srcset="">
+                    <img src="assets/images/logo_alfama.png" width="200px" alt="Logo AlfamaWeb">
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -37,27 +42,23 @@
                             <a class="nav-link" href="">Depoimentos</a>
                         </li>
                         <li class="nav-item">
-                            <button class="btn ms-lg-3 btn-call">(00) 00000-0000</button>
+                            <a href="tel:+5500000000000" class="btn ms-lg-3 btn-call"><i class="bi bi-telephone"></i>(00) 00000-0000</a>
                         </li>
                     </ul>
                 </div>
             </div>
         </nav>
 
-        <section class="pt-5 pb-0 position-relative">
+        <section class="pt-4">
             <div class="container">
                 <div class="row">
                     
-                    <div class="col-lg-8 position-relative hero-left-column">
-                        <div class="hero-content">
-                            <h1 class="mt-0">Lorem ipsum dolor sit amet. <span>Nam vehicula enim dui.</span></h1>
-                            <p class="lead col-lg-5">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam vehicula enim dui. Cras vitae euismod metus.</p>
-                        </div>
-
-                        <img src="assets/images/casal-header.png" alt="Casal de senhores sorrindo" class="img-hero-overlay d-none d-lg-block">
+                    <div class="col-lg-8 hero-content">
+                        <h1 class="display-5 fw-normal col-lg-10">Lorem ipsum dolor sit amet. <span class="fw-bolder">Nam vehicula enim dui.</span></h1>
+                        <p class="lh-1 col-lg-6">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam vehicula enim dui. <br>Cras vitae euismod metus.</p>
                     </div>
 
-                    <div class="col-lg-4 pb-5 pt-4 pt-lg-0">
+                    <div class="col-lg-4 ">
                         <div class="card shadow border-0" style="border-radius: 15px;">
                             <div class="card-body p-4">
                                 <h3 class="h5 mb-1">Precisa de nossa ajuda?</h3>
@@ -66,30 +67,43 @@
                                 <form action="mail/mail.php" method="POST">
                                     <div class="mb-3">
                                         <label for="inputName" class="visually-hidden">Nome</label>
-                                        <input type="text" name="nome" class="form-control" id="inputName" placeholder="Nome" required>
+                                        <div class="input-group">
+                                            <span class="input-group-text"><i class="bi bi-person"></i></span>
+                                            <input type="text" name="nome" class="form-control" id="inputName" placeholder="Nome" required>
+                                        </div>
                                     </div>
                                     
-                                    <div class="mb-3" id="container-select">
-                                        </div>
+                                    <div class="mb-3" id="container-select"></div>
                                     
                                     <div class="mb-3">
                                         <label for="inputTelefone" class="visually-hidden">Telefone</label>
-                                        <input type="tel" name="telefone" class="form-control" id="inputTelefone" placeholder="Telefone" required>
+                                        <div class="input-group">
+                                            <span class="input-group-text"><i class="bi bi-telephone"></i></span>
+                                            <input type="tel" name="telefone" class="form-control" id="inputTelefone" placeholder="Telefone" required>
+                                        </div>
                                     </div>
                                     
                                     <div class="mb-3">
                                         <label for="inputEmail" class="visually-hidden">E-mail</label>
-                                        <input type="email" name="email" class="form-control" id="inputEmail" placeholder="E-mail" required>
+                                        <div class="input-group">
+                                            <span class="input-group-text"><i class="bi bi-envelope"></i></span>
+                                            <input type="email" name="email" class="form-control" id="inputEmail" placeholder="E-mail" required>
+                                        </div>
                                     </div>
                                     
                                     <div class="mb-3">
                                         <label for="inputValor" class="visually-hidden">Valor do precatório</label>
-                                        <input type="text" name="valor" class="form-control" id="inputValor" placeholder="Valor do precatório">
+                                        <div class="input-group">
+                                            <span class="input-group-text"><span class="input-icon ">R$</span></span>
+                                            <input type="text" name="valor" class="form-control" id="inputValor" placeholder="Valor do precatório">
+                                        </div>
                                     </div>
                                     
                                     <div class="mb-3">
                                         <label for="inputNumeroProcesso" class="visually-hidden">Número do processo</label>
-                                        <input type="text" name="processo" class="form-control" id="inputNumeroProcesso" placeholder="Número do processo">
+                                        <div class="input-group">
+                                            <input type="text" inputmode="numeric" name="processo" class="form-control" id="inputNumeroProcesso" placeholder="Número do processo">
+                                        </div>
                                     </div>
                                     
                                     <div class="d-grid">
@@ -104,13 +118,50 @@
             </div>
         </section>
     </header>
+    <section class="about-section">
+
+    </section>
+
+    <button 
+        type="button" 
+        class="btn btn-primary btn-lg rounded-circle position-fixed bottom-0 end-0 m-4 z-3 invisible" 
+        id="btn-back-to-top"
+        aria-label="Back to top">
+        <i class="bi bi-arrow-up"></i>
+    </button>
+
+    <script src="assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script>
         fetch('estados-select.html')
             .then(response => response.text())
             .then(data => {
                 document.getElementById('container-select').innerHTML = data;
+            })
+            .catch(error => {
+                console.error('Error loading states:', error);
+                document.getElementById('container-select').innerHTML = '<p class="text-danger">Erro ao carregar estados.</p>';
             });
+
+        const myButton = document.getElementById('btn-back-to-top');
+
+        window.onscroll = function () {
+            scrollFunction();
+        };
+
+        function scrollFunction() {
+            if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+                myButton.classList.remove('invisible');
+            } else {
+                myButton.classList.add('invisible');
+            }
+        }
+
+        myButton.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
     </script>
-    <script src="assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
