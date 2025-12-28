@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Valor do precatório
+    // Valor do pre ório
     const inputValor = document.getElementById('inputValor');
     if (inputValor) {
         inputValor.addEventListener('input', function (e) {
