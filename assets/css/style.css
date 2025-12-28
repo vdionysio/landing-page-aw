@@ -7,7 +7,7 @@
 body {
     background-color: var(--form-bg-color);
     font-family: 'Montserrat', Arial, sans-serif;
-    color: #FFFFFF;
+    
 }
 
 header {
@@ -17,6 +17,7 @@ header {
         linear-gradient(to bottom, rgba(255,255,255,0) 70%, #07012b65 100%),
         url('../images/main-bg-sm.png');
     background-size: auto;
+    color: #FFFFFF;
 }
 
 .hero-content h1 {
@@ -137,16 +138,16 @@ header {
 
 .checkbox-wrapper {
     display: flex;
-    align-items: center; /* Alinha verticalmente ao centro */
-    gap: 10px;           /* Espaço entre o quadrado e o texto */
-    margin-bottom: 20px; /* Espaço antes do botão de enviar */
-    font-size: 14px;     /* Tamanho do texto */
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+    font-size: 14px;
 }
 
 .checkbox-wrapper input[type="checkbox"] {
-    width: 16px;         /* Tamanho do quadrado */
-    height: 16px;        /* Tamanho do quadrado */
-    cursor: pointer;     /* Cursor de ponteiro ao passar o mouse */
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
 }
 
 .input-group-text {
@@ -186,6 +187,14 @@ header {
     transform: scale(1.1);
 }
 
+.about-section h2 span, .card-title {
+    color: #065C99;
+}
+
+.about-section .card, .about-section .card img {
+
+    border-radius: 20px;
+}
 /* Small devices (landscape phones, 576px and up) */
 @media (min-width: 576px) { 
     /* styles for .col-sm-* */
