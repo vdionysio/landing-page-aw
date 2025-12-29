@@ -38,8 +38,8 @@ try {
     $mail->SMTPAuth   = true;
     
     // DADOS GMAIL
-    $mail->Username   = 'username@gmail.com'; // TO DO add env var
-    $mail->Password   = 'xxxx xxxx xxxx xxxx'; // TO DO add env var
+    $mail->Username   = getenv('SMTP_USER'); // TO DO add env var
+    $mail->Password   = getenv('SMTP_PASS'); // TO DO add env var
     
     $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS; 
     $mail->Port       = 465;
@@ -53,9 +53,9 @@ try {
     );
 
     // Envio
-    $mail->setFrom('username@gmail.com', 'Site AlfamaWeb'); // mesmo utilizado em $mail->Username
-    $mail->addAddress('viniciuss@alfamaweb.com.br'); // destinatários
-    $mail->addAddress('marcelw@alfamaweb.com.br'); // destinatários
+    $mail->setFrom(getenv('SMTP_USER'), 'Site AlfamaWeb');
+    $mail->addAddress(getenv('DEST_1')); // destinatários
+    $mail->addAddress(getenv('DEST_2')); // destinatários
     $mail->addReplyTo($email, $nome);
 
     // Conteúdo

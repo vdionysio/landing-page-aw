@@ -147,13 +147,6 @@ header {
     75% { transform: translateX(2px); }
 }
 
-.input-icon {
-    width: 16px;
-    height: 16px;
-    object-fit: contain;
-    display: block;
-}
-
 .input-group {
     position: relative;
 }
