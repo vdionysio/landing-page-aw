@@ -33,7 +33,7 @@ Este projeto utiliza Docker para garantir compatibilidade e facilidade de execu√
     ```
     ou
     ```bash
-    docker-compose up --build
+    docker compose up --build
     ```
 
 3.  **Acessar:**
