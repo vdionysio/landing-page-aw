@@ -184,6 +184,12 @@ header {
     z-index: 12;
 }
 
+.mb-3:has(+ .mb-3:focus-within) .invalid-tooltip {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.2s ease;
+}
+
 .input-group .form-control,
 .input-group .form-select {
     padding-left: 50px;
