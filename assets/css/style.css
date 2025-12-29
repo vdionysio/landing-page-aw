@@ -23,6 +23,9 @@ body {
     background-color: var(--bg-light);
     font-family: 'Montserrat', Arial, sans-serif;
     color: var(--text-color);
+
+    overflow-x: hidden;
+    width: 100%;
 }
 
 /* Layout geral Sections */
@@ -48,7 +51,9 @@ header {
 }
 
 .navbar-brand img {
-    width: 200px;
+    max-width: 180px;
+    width: 100%;
+    height: auto;
 }
 
 .hero-content h1 {
@@ -100,16 +105,23 @@ header {
 .btn-whatsapp {
     background-color: var(--whatsapp-color);
     color: #fff;
-    width: 60px;
-    height: 60px;
+    width: 35px;
+    height: 35px;
     border: none;
     transition: all 0.3s ease;
+    z-index: 100;
 }
 
 .btn-whatsapp:hover {
     background-color: var(--whatsapp-hover);
     color: #fff;
     transform: scale(1.1);
+}
+
+/* Botão Voltar ao Topo */
+.btn-back-to-top {
+    z-index: 100;
+    width: 20px;
 }
 
 /* Form */
@@ -168,6 +180,10 @@ header {
     pointer-events: none;
 }
 
+.input-group .input-group-text:active {
+    z-index: 12;
+}
+
 .input-group .form-control,
 .input-group .form-select {
     padding-left: 50px;
@@ -207,6 +223,12 @@ header {
     background-color: var(--danger-bg) !important; 
     backdrop-filter: blur(2px); /* desfoque no fundo */
     -webkit-backdrop-filter: blur(2px);
+    z-index: 11;
+}
+
+#form-alert {
+    max-width: 400px;
+    z-index: 99;
 }
 
 /* Cards/Seções */
@@ -385,11 +407,19 @@ header {
         font-size: 14px;
     }
     
+    .btn-whatsapp {
+        width: 50px;
+        height: 50px;
+    }
 }
 
 /* XL */
 @media (min-width: 1200px) { 
     header {
         background-position: center;
+    }
+
+    .navbar-brand img {
+        max-width: 220px;
     }
 }
